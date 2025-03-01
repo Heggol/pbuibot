@@ -9,10 +9,6 @@ module.exports = function () {
     }
 
     config.state.lastState = null;
-    config.state.players = {
-        player1: "Player 1",
-        player2: "Player 2"
-    };
 
     config.state.tiebreakerMapId = null;
 };

@@ -13,17 +13,17 @@ module.exports = {
                     { name: 'Player 1', value: 1 },
                     { name: 'Player 2', value: 2 }
                 ))
-        .addStringOption(option =>
-            option.setName('name')
-                .setDescription('Player name')
+        .addUserOption(option =>
+            option.setName('user')
+                .setDescription('Discord user to set as player')
                 .setRequired(true)),
-
     async execute(interaction) {
         const playerNumber = interaction.options.getInteger('number');
-        const playerName = interaction.options.getString('name');
-
-        config.state.players[playerNumber] = playerName;
-
-        await interaction.reply(`Set Player ${playerNumber} name to "${playerName}"`);
+        const user = interaction.options.getUser('user');
+        
+        // Store the user's ID or tag as needed
+        config.state.players[playerNumber] = user.username; // or user.tag if you prefer the username#discriminator format
+        
+        await interaction.reply(`Set Player ${playerNumber} to ${user}`); // This will automatically format as a mention
     }
 };
