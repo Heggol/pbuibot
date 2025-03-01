@@ -14,7 +14,7 @@ function getSongStateName(stateObj) {
 
     switch (status) {
         case 'pick':
-            return player === 0 ? `is the Tiebreaker` : `Picked by ${config.state.players[player]}`;
+            return player === 0 ? `Tiebreaker` : `Picked by ${config.state.players[player]}`;
         case 'ban': 
             return `Banned by ${config.state.players[player]}`;
         default:
