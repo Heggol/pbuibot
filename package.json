@@ -1,6 +1,6 @@
 {
   "name": "pbuibot",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Bot for Picks and Bans",
   "main": "src/index.js",
   "scripts": {

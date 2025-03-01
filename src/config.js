@@ -10,6 +10,7 @@ module.exports = {
     matchChannel: null,
     isActive: false,
     lastState: null,
+    lastMessage: null,
     players: {
       0: "Tiebreaker",
       1: "Player 1",

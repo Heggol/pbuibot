@@ -45,9 +45,26 @@ async function registerCommands() {
  * @param {string} message The message to send
  * @returns {Promise|null} Promise from the send operation or null if no channel
  */
-function sendToMatchChannel(message) {
+async function sendToMatchChannel(message) {
     if (!config.state.matchChannel || !message) return null;
-    return config.state.matchChannel.send(message);
+
+    try {
+        if (config.state.lastMessage) {
+            return await config.state.lastMessage.edit(message);
+        } else {
+            const sentMessage = await config.state.matchChannel.send(message);
+            config.state.lastMessage = sentMessage;
+            return sentMessage;
+        }
+    } catch (error) {
+        console.error('error sending/editing message:', error);
+        if (error.code === 10008) {
+            const sentMessage = await config.state.matchChannel.send(message);
+            config.state.lastMessage = sentMessage;
+            return sentMessage;
+        }
+    }
+    return null;
 }
 
 module.exports = {

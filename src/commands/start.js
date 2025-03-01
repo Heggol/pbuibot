@@ -12,7 +12,7 @@ module.exports = {
             await interaction.reply('Please set a match channel first using /setchannel');
             return;
         }
-
+        config.state.lastMessage = null;
         config.state.isActive = true;
         await interaction.reply(`Started listening for pick/ban updates in #${config.state.matchChannel.name}`);
 
