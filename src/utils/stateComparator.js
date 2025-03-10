@@ -1,14 +1,14 @@
 /**
  * Detect if there are new song states
- * @param {Object|null} oldSongStates Previous song states
- * @param {Object} newSongStates Current song states
+ * @param {Object|null} oldsong_states Previous song states
+ * @param {Object} newsong_states Current song states
  * @returns {boolean} True if new states are detected
  */
-function hasNewSongState(oldSongStates, newSongStates) {
-    if (!oldSongStates) return true;
-    if (!newSongStates) return false;
-    for (const songId in newSongStates) {
-        if (!oldSongStates[songId] || oldSongStates[songId] !== newSongStates[songId]) {
+function hasNewSongState(oldsong_states, newsong_states) {
+    if (!oldsong_states) return true;
+    if (!newsong_states) return false;
+    for (const songId in newsong_states) {
+        if (!oldsong_states[songId] || oldsong_states[songId] !== newsong_states[songId]) {
             return true;
         }
     }
@@ -25,11 +25,11 @@ function hasNewSongState(oldSongStates, newSongStates) {
 function shouldSendUpdate(previousState, currentState) {
     if (!previousState) return true;
 
-    const previousStep = previousState?.currentFlowStep || 0;
-    const currentStep = currentState.currentFlowStep;
+    const previousStep = previousState?.current_flow_step || 0;
+    const currentStep = currentState.current_flow_step;
 
     return previousStep !== currentStep ||
-        hasNewSongState(previousState?.songStates, currentState.songStates);
+        hasNewSongState(previousState?.song_states, currentState.song_states);
 }
 
 module.exports = {

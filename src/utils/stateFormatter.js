@@ -29,19 +29,19 @@ function getSongStateName(stateObj) {
  * @returns {string} Formatted message for Discord
  */
 function formatStateUpdate(state, previousState = null) {
-    const { songStates, currentFlowStep } = state;
+    const { song_states, current_flow_step } = state;
 
     const changedSongs = [];
-    for (const songId in songStates) {
-        if (!previousState?.songStates || previousState.songStates[songId] !== songStates[songId]) {
-            changedSongs.push({ id: songId, ...songStates[songId] });
+    for (const songId in song_states) {
+        if (!previousState?.song_states || previousState.song_states[songId] !== song_states[songId]) {
+            changedSongs.push({ id: songId, ...song_states[songId] });
         }
     }
 
     let message = '';
 
-    if (!previousState || previousState.currentFlowStep !== currentFlowStep) {
-        console.log(`Flow step changed: ${previousState?.currentFlowStep || 0} → ${currentFlowStep}\n`);
+    if (!previousState || previousState.current_flow_step !== current_flow_step) {
+        console.log(`Flow step changed: ${previousState?.current_flow_step || 0} → ${current_flow_step}\n`);
     }
 
     changedSongs.sort((a, b) => a.step - b.step);
